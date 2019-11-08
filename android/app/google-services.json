@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "765420102875",
+    "firebase_url": "https://app-vendas-missoes.firebaseio.com",
+    "project_id": "app-vendas-missoes",
+    "storage_bucket": "app-vendas-missoes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765420102875:android:c48e7d163a49bed92758fe",
+        "android_client_info": {
+          "package_name": "appvendas.ibncrioverde.com.app_vendas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765420102875-rj4vt2a0rl0a3dikjmc20tpo41mhjc2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvG24E5pU13ou9Mfx60u0zr4he9_4ihv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765420102875-rj4vt2a0rl0a3dikjmc20tpo41mhjc2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
