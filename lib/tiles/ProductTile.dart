@@ -1,4 +1,5 @@
 import 'package:app_vendas/datas/product_data.dart';
+import 'package:app_vendas/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductTile extends StatelessWidget {
@@ -10,6 +11,13 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (conetxt) => ProductScreen(product),
+          ),
+        );
+      },
       child: Card(
         child: type == "grid"
             ? Column(
@@ -30,6 +38,7 @@ class ProductTile extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             product.title,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 12.0,
@@ -48,7 +57,43 @@ class ProductTile extends StatelessWidget {
                   ),
                 ],
               )
-            : Row(),
+            : Row(
+                children: <Widget>[
+                  Flexible(
+                    flex: 1,
+                    child: Image.network(
+                      product.images[0],
+                      fit: BoxFit.cover,
+                      height: 250.0,
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            product.title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                          Text(
+                            "R\$ ${product.price.toStringAsFixed(2)}",
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
       ),
     );
   }
