@@ -14,6 +14,8 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   final ProductData productState;
 
+  String size;
+
   _ProductScreenState(this.productState);
 
   @override
@@ -54,9 +56,53 @@ class _ProductScreenState extends State<ProductScreen> {
                 Text(
                   "R\$ ${productState.price.toStringAsFixed(2)}",
                   style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor),
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  "Tamanho",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: 34.0,
+                  child: GridView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.5),
+                    children: productState.sizes.map((tamanho) {
+                      return GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            size = tamanho;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(4.0)),
+                            border: Border.all(
+                              color: tamanho == size ? primaryColor : Colors.grey[500],
+                              width: 3.0,
+                            ),
+                          ),
+                          width: 50.0,
+                          alignment: Alignment.center,
+                          child: Text(tamanho),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ],
             ),
