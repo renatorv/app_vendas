@@ -66,7 +66,7 @@ class CustomDrawer extends StatelessWidget {
                             ),
                             onTap: () {
                               Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
+                                  .push(MaterialPageRoute(
                                 builder: (context) => LoginScreen(),
                               ));
                             },
