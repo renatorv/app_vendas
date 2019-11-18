@@ -1,4 +1,4 @@
-import 'package:app_vendas/screens/home_screen.dart';
+// import 'package:app_vendas/screens/home_screen.dart';
 import 'package:app_vendas/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
