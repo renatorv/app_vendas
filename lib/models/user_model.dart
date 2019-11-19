@@ -51,11 +51,24 @@ class UserModel extends Model {
     notifyListeners();
   }
 
-  void recoverPAss() {}
+  void recoverPass() {}
 
-  // bool isLogggedIn(){
+  // Se o usuário atual for diferente de null
+  // essa função retorna true, indicando que
+  // o usuário está logado
+  bool isLogggedIn() {
+    return firebaseUser != null;
+  }
 
-  // }
+  void signOut() async {
+    await _auth.signOut();
+
+    // Resetando os dados do usuários
+    userData = Map();
+    firebaseUser = null;
+
+    notifyListeners();
+  }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
