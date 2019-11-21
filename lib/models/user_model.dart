@@ -73,7 +73,9 @@ class UserModel extends Model {
     });
   }
 
-  void recoverPass() {}
+  void recoverPass(String email) {
+    _auth.sendPasswordResetEmail(email: email);
+  }
 
   // Se o usuário atual for diferente de null
   // essa função retorna true, indicando que
