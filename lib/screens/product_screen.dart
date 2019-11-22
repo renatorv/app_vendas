@@ -1,4 +1,6 @@
 import 'package:app_vendas/datas/product_data.dart';
+import 'package:app_vendas/models/user_model.dart';
+import 'package:app_vendas/screens/login_screen.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
@@ -115,7 +117,21 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(
                   height: 44.0,
                   child: RaisedButton(
-                    onPressed: size != null ? () {} : null,
+                    onPressed: size != null
+                        ? () {
+                            if (UserModel.of(context).isLogggedIn()) {
+                              // Adiciona ao carrinho
+                              
+                            } else {
+                              // Abre tela de login
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            }
+                          }
+                        : null,
                     child: Text(
                       "Adicionar ao Carrinho",
                       style: TextStyle(
