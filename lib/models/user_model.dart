@@ -16,8 +16,9 @@ class UserModel extends Model {
 
   bool isLoading = false;
 
+  // Possibilita o acesso ao model
   static UserModel of(BuildContext context) =>
-    ScopedModel.of<UserModel>(context);
+      ScopedModel.of<UserModel>(context);
 
   @override
   void addListener(listener) {

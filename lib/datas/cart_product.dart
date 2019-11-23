@@ -12,6 +12,9 @@ class CartProduct {
 
   ProductData productData;
 
+  // Construtor Vazio
+  CartProduct();
+
   // Construtor
   CartProduct.fromDocument(DocumentSnapshot document) {
     cid = document.documentID;
@@ -28,7 +31,7 @@ class CartProduct {
       "pid": pid,
       "quantity": quantity,
       "size": size,
-      "product": productData.toResumeMap(),
+      //"product": productData.toResumeMap(),
     };
   }
 }

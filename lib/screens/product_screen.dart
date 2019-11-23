@@ -1,5 +1,8 @@
+import 'package:app_vendas/datas/cart_product.dart';
 import 'package:app_vendas/datas/product_data.dart';
+import 'package:app_vendas/models/cart_model.dart';
 import 'package:app_vendas/models/user_model.dart';
+import 'package:app_vendas/screens/cart_screen.dart';
 import 'package:app_vendas/screens/login_screen.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +124,21 @@ class _ProductScreenState extends State<ProductScreen> {
                         ? () {
                             if (UserModel.of(context).isLogggedIn()) {
                               // Adiciona ao carrinho
-                              
+                              CartProduct cartProduct = CartProduct();
+
+                              cartProduct.size = size;
+                              cartProduct.quantity =
+                                  1; // esse parametro será alterado na proxima tela
+                              cartProduct.pid = productState.id;
+                              cartProduct.category = productState.category;
+
+                              CartModel.of(context).addCartItem(cartProduct);
+
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => CartScreen(),
+                                ),
+                              );
                             } else {
                               // Abre tela de login
                               Navigator.of(context).push(
@@ -133,7 +150,9 @@ class _ProductScreenState extends State<ProductScreen> {
                           }
                         : null,
                     child: Text(
-                      "Adicionar ao Carrinho",
+                      UserModel.of(context).isLogggedIn()
+                          ? "Adicionar ao Carrinho"
+                          : "Entre para Comprar",
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
