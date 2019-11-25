@@ -52,17 +52,13 @@ class CartScreen extends StatelessWidget {
                     size: 80,
                     color: Theme.of(context).primaryColor,
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
+                  SizedBox(height: 16),
                   Text(
                     "Faça o login para adicionar produtos!",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
+                  SizedBox(height: 16),
                   RaisedButton(
                     child: Text(
                       "Entrar",
@@ -88,6 +84,14 @@ class CartScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
+            );
+          } else {
+            return ListView(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[],
+                ),
+              ],
             );
           }
         },

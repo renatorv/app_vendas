@@ -62,11 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (text) {
                       if (text.isEmpty || !text.contains("@"))
                         return "E-mail inválido!";
+                      return null;
                     },
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
+                  SizedBox(height: 16.0),
                   TextFormField(
                     controller: _passController,
                     decoration: InputDecoration(hintText: "Senha"),
@@ -74,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (texto) {
                       if (texto.isEmpty || texto.length < 6)
                         return "Senha inválida!";
+                      return null;
                     },
                   ),
                   Align(
@@ -103,9 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.zero,
                     ),
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
+                  SizedBox(height: 16.0),
                   SizedBox(
                     height: 44.0,
                     child: RaisedButton(

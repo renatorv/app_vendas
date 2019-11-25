@@ -43,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(hintText: "Nome Completo"),
                     validator: (text) {
                       if (text.isEmpty) return "Nome inválido!";
+                      return null;
                     },
                   ),
                   SizedBox(height: 16.0),
@@ -53,6 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (text) {
                       if (text.isEmpty || !text.contains("@"))
                         return "E-mail inválido!";
+                      return null;
                     },
                   ),
                   SizedBox(height: 16.0),
@@ -63,6 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (texto) {
                       if (texto.isEmpty || texto.length < 6)
                         return "Senha inválida!";
+                      return null;
                     },
                   ),
                   SizedBox(height: 16.0),
@@ -71,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(hintText: "Endereço"),
                     validator: (texto) {
                       if (texto.isEmpty) return "Endereço inválido!";
+                      return null;
                     },
                   ),
                   SizedBox(height: 16.0),
