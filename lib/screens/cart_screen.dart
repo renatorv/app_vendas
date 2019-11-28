@@ -1,6 +1,7 @@
 import 'package:app_vendas/models/cart_model.dart';
 import 'package:app_vendas/models/user_model.dart';
 import 'package:app_vendas/screens/login_screen.dart';
+import 'package:app_vendas/tiles/cart_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -89,8 +90,9 @@ class CartScreen extends StatelessWidget {
             return ListView(
               children: <Widget>[
                 Column(
-                  children: <Widget>[],
-                ),
+                    children: model.products.map((product) {
+                  return CartTile(product);
+                }).toList()),
               ],
             );
           }
