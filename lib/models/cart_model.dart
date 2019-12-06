@@ -11,21 +11,17 @@ class CartModel extends Model {
 
   bool isLoading = false;
 
-  CartModel(this.user);
+  CartModel(this.user) {
+    if (user.isLogggedIn()) _loadCartItems();
+  }
 
   // Possibilita o acesso ao model
-  static CartModel of(BuildContext context) =>
-      ScopedModel.of<CartModel>(context);
+  static CartModel of(BuildContext context) => ScopedModel.of<CartModel>(context);
 
   void addCartItem(CartProduct cartProduct) {
     products.add(cartProduct);
 
-    Firestore.instance
-        .collection("users")
-        .document(user.firebaseUser.uid)
-        .collection("cart")
-        .add(cartProduct.toMap())
-        .then((doc) {
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("cart").add(cartProduct.toMap()).then((doc) {
       cartProduct.cid = doc.documentID;
     });
 
@@ -33,14 +29,33 @@ class CartModel extends Model {
   }
 
   void removeCartItem(CartProduct cartProduct) {
-    Firestore.instance
-        .collection("users")
-        .document(user.firebaseUser.uid)
-        .collection("cart")
-        .document(cartProduct.cid)
-        .delete();
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("cart").document(cartProduct.cid).delete();
 
     products.remove(cartProduct);
+
+    notifyListeners();
+  }
+
+  void decProduct(CartProduct cartProduct) {
+    cartProduct.quantity--;
+
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("cart").document(cartProduct.cid).updateData(cartProduct.toMap());
+
+    notifyListeners();
+  }
+
+  void incProduct(CartProduct cartProduct) {
+    cartProduct.quantity++;
+
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("cart").document(cartProduct.cid).updateData(cartProduct.toMap());
+
+    notifyListeners();
+  }
+
+  void _loadCartItems() async {
+    QuerySnapshot querySnapshot = await Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("cart").getDocuments();
+
+    products = querySnapshot.documents.map((doc) => CartProduct.fromDocument(doc)).toList();
 
     notifyListeners();
   }
