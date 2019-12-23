@@ -1,3 +1,5 @@
+import 'package:app_vendas/models/cart_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DiscountCart extends StatelessWidget {
@@ -24,6 +26,24 @@ class DiscountCart extends StatelessWidget {
                 border: OutlineInputBorder(),
                 hintText: "Digite seu cupom",
               ),
+              initialValue: CartModel.of(context).couponCode ?? "",
+              onFieldSubmitted: (text) {
+                Firestore.instance.collection("coupons").document(text).get().then((docSnap) {
+                  if (docSnap.data != null) {
+                    CartModel.of(context).setCoupon(text, docSnap.data["percent"]);
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text("Desconto de ${docSnap.data["percent"]}% aplicado!"),
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ));
+                  } else {
+                    CartModel.of(context).setCoupon(null, 0);
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text("Cupom não existente!"),
+                      backgroundColor: Colors.redAccent,
+                    ));
+                  }
+                });
+              },
             ),
           )
         ],

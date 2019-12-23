@@ -2,7 +2,9 @@ import 'package:app_vendas/models/cart_model.dart';
 import 'package:app_vendas/models/user_model.dart';
 import 'package:app_vendas/screens/login_screen.dart';
 import 'package:app_vendas/tiles/cart_tile.dart';
+import 'package:app_vendas/widgets/card_price.dart';
 import 'package:app_vendas/widgets/discount_cart.dart';
+import 'package:app_vendas/widgets/ship_card.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -96,6 +98,8 @@ class CartScreen extends StatelessWidget {
                   }).toList(),
                 ),
                 DiscountCart(),
+                ShipCard(),
+                CardPrice(),
               ],
             );
           }
